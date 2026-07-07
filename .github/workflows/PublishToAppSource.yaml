@@ -38,7 +38,7 @@ jobs:
       telemetryScopeJson: ${{ steps.init.outputs.telemetryScopeJson }}
     steps:
       - name: Dump Workflow Information
-        uses: Freddy-DK/AL-Go/Actions/DumpWorkflowInfo@cd406114588a60db555094b8fc7f19676d82ae58
+        uses: Freddy-DK/AL-Go/Actions/DumpWorkflowInfo@5bcd2fe46fb4bcdcc7541c0840e5899f961f1a83
         with:
           shell: powershell
 
@@ -47,7 +47,7 @@ jobs:
 
       - name: Initialize the workflow
         id: init
-        uses: Freddy-DK/AL-Go/Actions/WorkflowInitialize@cd406114588a60db555094b8fc7f19676d82ae58
+        uses: Freddy-DK/AL-Go/Actions/WorkflowInitialize@5bcd2fe46fb4bcdcc7541c0840e5899f961f1a83
         with:
           shell: powershell
 
@@ -60,20 +60,20 @@ jobs:
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
       - name: Read settings
-        uses: Freddy-DK/AL-Go/Actions/ReadSettings@cd406114588a60db555094b8fc7f19676d82ae58
+        uses: Freddy-DK/AL-Go/Actions/ReadSettings@5bcd2fe46fb4bcdcc7541c0840e5899f961f1a83
         with:
           shell: powershell
 
       - name: Read secrets
         id: ReadSecrets
-        uses: Freddy-DK/AL-Go/Actions/ReadSecrets@cd406114588a60db555094b8fc7f19676d82ae58
+        uses: Freddy-DK/AL-Go/Actions/ReadSecrets@5bcd2fe46fb4bcdcc7541c0840e5899f961f1a83
         with:
           shell: powershell
           gitHubSecrets: ${{ toJson(secrets) }}
           getSecrets: 'appSourceContext'
 
       - name: Deliver
-        uses: Freddy-DK/AL-Go/Actions/Deliver@cd406114588a60db555094b8fc7f19676d82ae58
+        uses: Freddy-DK/AL-Go/Actions/Deliver@5bcd2fe46fb4bcdcc7541c0840e5899f961f1a83
         env:
           Secrets: '${{ steps.ReadSecrets.outputs.Secrets }}'
         with:
@@ -94,7 +94,7 @@ jobs:
 
       - name: Finalize the workflow
         id: PostProcess
-        uses: Freddy-DK/AL-Go/Actions/WorkflowPostProcess@cd406114588a60db555094b8fc7f19676d82ae58
+        uses: Freddy-DK/AL-Go/Actions/WorkflowPostProcess@5bcd2fe46fb4bcdcc7541c0840e5899f961f1a83
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
